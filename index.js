@@ -128,6 +128,7 @@ client.connect(err => {
   })
   app.post('/makeAdmin', (req, res) => {
     const email = req.body.email;
+    const name =req.body.name
     makeAdminCollection.insertOne({ email: email, name: name })
       .then(result => {
         res.send(result.insertedCount > 0)
@@ -148,6 +149,7 @@ client.connect(err => {
   })
   app.post('/findCoLeader', (req, res) => {
    const email = req.body.email
+  //  console.log(email)
     makeAdminCollection.find({email:email})
       .toArray((err, document) => {
         res.send(document.length > 0)
